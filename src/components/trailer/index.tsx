@@ -1,13 +1,10 @@
 import * as React from 'react';
-import { Heading, Divider, Box, useMediaQuery, Button } from '@chakra-ui/react';
+import { Heading, Divider, Box, useMediaQuery } from '@chakra-ui/react';
 import ReactPlayer from 'react-player';
 import { CardInformation } from '../utils/types';
-import { useState, useRef } from 'react';
-import ReactToPrint from 'react-to-print';
 
 const index = ({ anime }: CardInformation) => {
   const [smallerThan768] = useMediaQuery('(max-width: 768px)');
-  const componentRef = useRef();
 
   return (
     <div className='p-4'>
@@ -30,18 +27,8 @@ const index = ({ anime }: CardInformation) => {
         <Heading pb={4}>
           <strong>Synopsis:</strong>
         </Heading>
-        <Box ref={componentRef}>
-          <p>{anime.synopsis}</p>
-        </Box>
+        <p>{anime.synopsis}</p>
       </Box>
-      <ReactToPrint
-        trigger={() => (
-          <div className='d-flex justify-content-center'>
-            <Button size='lg'>Imprimir</Button>
-          </div>
-        )}
-        content={() => componentRef.current}
-      />
     </div>
   );
 };
